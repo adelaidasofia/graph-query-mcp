@@ -1,0 +1,19 @@
+[project]
+name = "graph-query-mcp"
+version = "0.1.0"
+description = "FastMCP server for surgical queries against a vault knowledge graph (NetworkX node-link JSON). Companion to graphify in ai-brain-starter."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Adelaida Diaz-Roa" }]
+dependencies = [
+    "fastmcp>=3.2.3",
+    "networkx>=3.0",
+]
+
+[project.scripts]
+graph-query-mcp = "server:mcp.run"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

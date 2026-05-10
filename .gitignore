@@ -1,0 +1,21 @@
+# Local-only graph files (the actual user data)
+*.json
+!package.json
+!package-lock.json
+
+# Env + secrets
+.env
+.env.local
+
+# Python tooling
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Virtualenvs
+.venv/
+venv/

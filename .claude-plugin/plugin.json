@@ -1,0 +1,9 @@
+{
+  "name": "graph-query-mcp",
+  "description": "FastMCP server for surgical queries against a vault knowledge graph (NetworkX node-link JSON). Companion to graphify in ai-brain-starter.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Mycelium AI",
+    "url": "https://myceliumai.co"
+  }
+}

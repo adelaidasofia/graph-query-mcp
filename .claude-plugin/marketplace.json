@@ -1,0 +1,15 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "graph-query-mcp",
+  "owner": {
+    "name": "Mycelium AI",
+    "url": "https://myceliumai.co"
+  },
+  "plugins": [
+    {
+      "name": "graph-query-mcp",
+      "source": "./",
+      "description": "Surgical queries against an Obsidian / vault knowledge graph. Loads a graph.json (NetworkX node-link format) once at startup and answers targeted questions without making Claude read a 50K-line graph report. Companion to graphify in ai-brain-starter."
+    }
+  ]
+}

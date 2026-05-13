@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "graph-query": {
+      "type": "stdio",
+      "command": "fastmcp",
+      "args": ["run", "${CLAUDE_PLUGIN_ROOT}/server.py"]
+    }
+  }
+}

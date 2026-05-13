@@ -37,6 +37,13 @@ If a path doesn't exist at startup, the server logs a warning and the tools retu
 
 ## Install
 
+Open Claude Code, paste:
+
+    /plugin marketplace add adelaidasofia/graph-query-mcp
+    /plugin install graph-query-mcp@graph-query-mcp
+
+<details><summary>Legacy install</summary>
+
 ```bash
 git clone https://github.com/adelaidasofia/graph-query-mcp.git ~/.claude/graph-query-mcp
 cd ~/.claude/graph-query-mcp
@@ -61,6 +68,8 @@ Register in your project `.mcp.json`:
 ```
 
 Restart Claude Code, then `claude mcp list` should show `graph-query` connected.
+
+</details>
 
 ## Generating the graph
 

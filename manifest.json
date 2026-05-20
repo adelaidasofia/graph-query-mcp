@@ -1,0 +1,57 @@
+{
+  "manifest_version": "0.4",
+  "name": "graph-query-mcp",
+  "display_name": "FastMCP server for surgical queries against a vault knowledge graph (NetworkX no",
+  "version": "0.1.0",
+  "description": "FastMCP server for surgical queries against a vault knowledge graph (NetworkX node-link JSON). Companion to graphify in ai-brain-starter.",
+  "author": {
+    "name": "adelaidasofia",
+    "url": "https://github.com/adelaidasofia"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adelaidasofia/graph-query-mcp.git"
+  },
+  "homepage": "https://github.com/adelaidasofia/graph-query-mcp",
+  "documentation": "https://github.com/adelaidasofia/graph-query-mcp#readme",
+  "support": "https://github.com/adelaidasofia/graph-query-mcp/issues",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "fastmcp",
+    "graph-query"
+  ],
+  "server": {
+    "type": "python",
+    "entry_point": "server.py",
+    "mcp_config": {
+      "command": "python3",
+      "args": [
+        "${__dirname}/server.py"
+      ],
+      "env": {
+        "GRAPH_JSON_PATH": "${user_config.graph_json_path}"
+      }
+    }
+  },
+  "tools_generated": true,
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ]
+  },
+  "user_config": {
+    "graph_json_path": {
+      "type": "string",
+      "title": "Graph JSON path",
+      "description": "Absolute path to your graphify-out/graph.json",
+      "required": true,
+      "sensitive": false
+    }
+  }
+}

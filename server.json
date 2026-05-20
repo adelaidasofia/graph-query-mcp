@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.adelaidasofia/graph-query-mcp",
+  "title": "FastMCP server for surgical queries against a vault knowledge graph (NetworkX no",
+  "description": "FastMCP server for surgical queries against a vault knowledge graph (NetworkX node-link JSON).\u2026",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/adelaidasofia/graph-query-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "mcpb",
+      "identifier": "https://github.com/adelaidasofia/graph-query-mcp/releases/download/v0.1.0/graph-query-mcp.mcpb",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "fileSha256": "eba8880fc820790590da010cc079acf827832a624cb0b6efd487ae68bc6df588",
+      "environmentVariables": [
+        {
+          "name": "GRAPH_JSON_PATH",
+          "description": "Absolute path to your graphify-out/graph.json",
+          "isRequired": true,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

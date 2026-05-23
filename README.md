@@ -1,5 +1,20 @@
 # graph-query-mcp
 
+
+<!-- mycelium-badges:start -->
+
+<p>
+  <a href="https://github.com/adelaidasofia/graph-query-mcp/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/adelaidasofia/graph-query-mcp?color=blue"></a>
+  <a href="https://github.com/adelaidasofia/graph-query-mcp/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/adelaidasofia/graph-query-mcp?color=eab308"></a>
+  <a href="https://github.com/adelaidasofia/graph-query-mcp/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/adelaidasofia/graph-query-mcp"></a>
+  <a href="https://github.com/adelaidasofia/graph-query-mcp/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/adelaidasofia/graph-query-mcp"></a>
+  <a href="https://pypi.org/project/adelaidasofia-graph-query-mcp/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/adelaidasofia-graph-query-mcp?color=blue&label=pypi"></a>
+  <a href="https://pypi.org/project/adelaidasofia-graph-query-mcp/"><img alt="PyPI downloads" src="https://img.shields.io/pypi/dm/adelaidasofia-graph-query-mcp?color=blue&label=downloads"></a>
+  <a href="https://myceliumai.co"><img alt="Built by Mycelium AI" src="https://img.shields.io/badge/built_by-Mycelium_AI-15B89A"></a>
+</p>
+
+<!-- mycelium-badges:end -->
+
 Surgical queries against an Obsidian / vault knowledge graph. Loads a `graph.json` (NetworkX node-link format) once at startup and answers targeted questions without making Claude read a 50K-line graph report.
 
 Designed to pair with [`graphify`](https://github.com/adelaidasofia/ai-brain-starter) (the graph-building skill in ai-brain-starter), but the server accepts any graph in NetworkX node-link JSON. Supports up to two scopes (primary + secondary, e.g. personal + team).

@@ -29,7 +29,7 @@ jobs:
       - name: Run tests
         run: |
           set +e
-          pytest tests/ -v
+          make ci
           code=$?
           set -e
           # Exit 5 = no tests collected (tests/ holds only credential-gated

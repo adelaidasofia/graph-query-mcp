@@ -1,10 +1,13 @@
 """Smoke integration test for graph-query-mcp.
 
-Bare script. `python3 tests/integration/test_smoke.py` from repo root.
-Exits 0 on full pass.
+Real pytest module: every step below is a collected `test_*` function, so
+`pytest tests/` runs them (previously this was a bare script with no test
+functions, so pytest collected 0 and exited 5 — the CI gate was green but
+validated nothing). Also runnable directly: `python3 tests/integration/test_smoke.py`
+invokes pytest in-process.
 
 Covers:
-  1. Server imports without error
+  1. Server module imports + constructs (every @mcp.tool() decorator runs)
   2. Server starts with no graphs configured (graceful degradation)
   3. Loads a tiny synthetic graph + queries it end-to-end
   4. No personal data in committable source
@@ -18,6 +21,8 @@ import sys
 import tempfile
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
@@ -27,27 +32,30 @@ def step(name: str) -> None:
 
 
 def fail(step_name: str, msg: str) -> None:
-    print(f"  ✗ FAIL at step: {step_name}")
-    print(f"    {msg}")
-    sys.exit(1)
+    # pytest.fail raises a BaseException subclass, so the per-step
+    # `except Exception` guards let a deliberate failure propagate.
+    pytest.fail(f"{step_name}: {msg}")
 
 
-def main() -> int:
-    print("graph-query-mcp smoke")
-
-    # Step 1: imports
+def test_server_module_constructs() -> None:
     name = "imports"
     try:
+        from fastmcp import FastMCP
         # Point env at temp paths so server import doesn't try to load real graphs
         with tempfile.TemporaryDirectory() as tmp:
             os.environ["GRAPH_JSON_PATH"] = str(Path(tmp) / "nope.json")
             os.environ["SECONDARY_GRAPH_JSON_PATH"] = str(Path(tmp) / "nope2.json")
             import server  # noqa: F401
+        if not isinstance(server.mcp, FastMCP):
+            fail(name, f"server.mcp is not a FastMCP instance: {type(server.mcp)!r}")
         step(name)
+    except pytest.fail.Exception:
+        raise
     except Exception as e:  # noqa: BLE001
         fail(name, f"import failed: {e}")
 
-    # Step 2: graceful degradation when graph file missing
+
+def test_graceful_degradation_missing_graph() -> None:
     name = "graceful degradation when graph file missing"
     try:
         import server
@@ -60,10 +68,13 @@ def main() -> int:
         if "not found" not in err.lower():
             fail(name, f"expected 'not found' error, got: {err}")
         step(name)
+    except pytest.fail.Exception:
+        raise
     except Exception as e:  # noqa: BLE001
         fail(name, str(e))
 
-    # Step 3: load a tiny synthetic graph + query end-to-end
+
+def test_load_and_query_synthetic_graph() -> None:
     name = "load + query a synthetic NetworkX node-link graph"
     try:
         import networkx as nx
@@ -95,10 +106,13 @@ def main() -> int:
             fail(name, f"find_path didn't return expected path: {result}")
         os.unlink(tmp_path)
         step(name)
+    except pytest.fail.Exception:
+        raise
     except Exception as e:  # noqa: BLE001
         fail(name, str(e))
 
-    # Step 4: no personal data in committable source
+
+def test_no_personal_data_in_source() -> None:
     name = "no third-party personal names in committable source"
     try:
         import re
@@ -120,12 +134,11 @@ def main() -> int:
         if hits:
             fail(name, f"personal data hits: {hits[:5]}")
         step(name)
+    except pytest.fail.Exception:
+        raise
     except Exception as e:  # noqa: BLE001
         fail(name, str(e))
 
-    print("\nPASSED — graph-query-mcp smoke (4 steps green)")
-    return 0
-
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(pytest.main([__file__, "-v"]))

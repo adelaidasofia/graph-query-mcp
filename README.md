@@ -17,7 +17,7 @@
 
 Surgical queries against an Obsidian / vault knowledge graph. Loads a `graph.json` (NetworkX node-link format) once at startup and answers targeted questions without making Claude read a 50K-line graph report.
 
-Designed to pair with [`graphify`](https://github.com/adelaidasofia/ai-brain-starter) (the graph-building skill in ai-brain-starter), but the server accepts any graph in NetworkX node-link JSON. Supports up to two scopes (primary + secondary, e.g. personal + team).
+Designed to pair with [`graphify`](https://github.com/mycelium-hq/ai-brain-starter) (the graph-building skill in ai-brain-starter), but the server accepts any graph in NetworkX node-link JSON. Supports up to two scopes (primary + secondary, e.g. personal + team).
 
 ## Why use this
 
@@ -88,7 +88,7 @@ Restart Claude Code, then `claude mcp list` should show `graph-query` connected.
 
 ## Generating the graph
 
-This MCP doesn't build the graph; it queries one. Use [`graphify`](https://github.com/adelaidasofia/ai-brain-starter) (a skill in ai-brain-starter) to produce a `graph.json` from your vault, or any other NetworkX-compatible builder. The expected format is the output of `networkx.node_link_data(G)`.
+This MCP doesn't build the graph; it queries one. Use [`graphify`](https://github.com/mycelium-hq/ai-brain-starter) (a skill in ai-brain-starter) to produce a `graph.json` from your vault, or any other NetworkX-compatible builder. The expected format is the output of `networkx.node_link_data(G)`.
 
 ## Verification
 
